@@ -77,7 +77,7 @@ jobs:
             "https://app.terraform.io/api/v2/workspaces/${WORKSPACE_ID}/current-state-version-outputs" \
             | jq -r '.data[] | select(.attributes.name == "kv_namespace_id") | .attributes.value')
 
-          npx wrangler kv:key put \
+          npx wrangler kv key put \
             "Censored_Harshit_SRE_Infrastructure_DevOps_Resume.pdf" \
             --path "assets/Censored_Harshit_SRE_Infrastructure_DevOps_Resume.pdf" \
             --namespace-id "$KV_ID" \
