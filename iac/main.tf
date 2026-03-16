@@ -35,7 +35,7 @@ resource "cloudflare_worker_script" "resume" {
       async fetch(request, env) {
         const url = new URL(request.url);
 
-        if (url.pathname === "/" || url.pathname === `/$${PDF_KEY}`) {
+        if (url.pathname === "/" || url.pathname === "/" + PDF_KEY) {
           const pdf = await env.RESUME_KV.get(PDF_KEY, { type: "arrayBuffer" });
 
           if (!pdf) return new Response("Resume not found", { status: 404 });
@@ -43,7 +43,7 @@ resource "cloudflare_worker_script" "resume" {
           return new Response(pdf, {
             headers: {
               "Content-Type": "application/pdf",
-              "Content-Disposition": `inline; filename="${PDF_KEY}"`,
+              "Content-Disposition": "inline; filename=" + PDF_KEY,
               "Cache-Control": "public, max-age=3600",
             },
           });
