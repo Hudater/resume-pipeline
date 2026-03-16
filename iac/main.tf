@@ -48,7 +48,7 @@ resource "cloudflare_ruleset" "resume_redirect" {
   kind    = "zone"
   phase   = "http_request_dynamic_redirect"
 
-  rule {
+  rules {
     action = "redirect"
     action_parameters {
       from_value {
@@ -64,4 +64,3 @@ resource "cloudflare_ruleset" "resume_redirect" {
     enabled     = true
   }
 }
-
