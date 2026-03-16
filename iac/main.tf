@@ -64,3 +64,4 @@ resource "cloudflare_ruleset" "resume_redirect" {
     enabled     = true
   }
 }
+

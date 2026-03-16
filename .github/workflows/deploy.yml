@@ -5,12 +5,12 @@ on:
   push:
     branches: ["main"]
     paths:
-      - "tofu/**"
+      - "iac/**"
       - "worker/**"
       - "assets/**"
   pull_request:
     paths:
-      - "tofu/**"
+      - "iac/**"
       - "worker/**"
       - "assets/**"
 
