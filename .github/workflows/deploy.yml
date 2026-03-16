@@ -57,11 +57,19 @@ jobs:
         id: plan
         run: tofu plan -no-color
         continue-on-error: true
+        env:
+          TF_VAR_cf_edit_all_api_token: ${{ secrets.CF_API_TOKEN }}
+          TF_VAR_cloudflare_account_id: ${{ secrets.CF_ACCOUNT_ID }}
+          TF_VAR_zone_id_hudater_dev: ${{ secrets.CF_ZONE_ID }}
 
       - name: OpenTofu Apply
         id: apply
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         run: tofu apply -auto-approve -input=false
+        env:
+          TF_VAR_cf_edit_all_api_token: ${{ secrets.CF_API_TOKEN }}
+          TF_VAR_cloudflare_account_id: ${{ secrets.CF_ACCOUNT_ID }}
+          TF_VAR_zone_id_hudater_dev: ${{ secrets.CF_ZONE_ID }}
 
       - name: Upload PDF to KV
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
