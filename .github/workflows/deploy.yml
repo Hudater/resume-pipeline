@@ -69,7 +69,7 @@ jobs:
         run: |
           WORKSPACE_ID=$(curl -s \
             --header "Authorization: Bearer ${{ secrets.TF_TOKEN_app_terraform_io }}" \
-            "https://app.terraform.io/api/v2/organizations/hudater/workspaces/resume-pipeline" \
+            "https://app.terraform.io/api/v2/organizations/homelab_hudater/workspaces/resume-pipeline" \
             | jq -r '.data.id')
 
           KV_ID=$(curl -s \
