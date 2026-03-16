@@ -65,6 +65,7 @@ resource "cloudflare_worker_domain" "resume" {
   hostname   = "resume.hudater.dev"
   service    = cloudflare_worker_script.resume.name
   zone_id    = var.zone_id_hudater_dev
+  # override_existing_dns_record = true
 }
 
 resource "cloudflare_ruleset" "resume_redirect" {
