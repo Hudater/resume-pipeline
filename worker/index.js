@@ -2,6 +2,12 @@ const PDF_KEY = "Censored_Harshit_SRE_Infrastructure_DevOps_Resume.pdf";
 
 export default {
     async fetch(request, env) {
+        const url = new URL(request.url);
+
+        if (url.pathname !== "/") {
+            return Response.redirect("https://resume.hudater.dev/", 301);
+        }
+
         const pdf = await env.RESUME_KV.get(PDF_KEY, { type: "arrayBuffer" });
 
         if (!pdf) return new Response("Resume not found", { status: 404 });
