@@ -43,26 +43,3 @@ resource "cloudflare_worker_domain" "resume" {
   zone_id    = var.zone_id_hudater_dev
   # override_existing_dns_record = true
 }
-
-resource "cloudflare_ruleset" "resume_redirect" {
-  zone_id = var.zone_id_hudater_dev
-  name    = "resume-redirect"
-  kind    = "zone"
-  phase   = "http_request_dynamic_redirect"
-
-  rules {
-    action = "redirect"
-    action_parameters {
-      from_value {
-        status_code = 301
-        target_url {
-          value = "https://resume.hudater.dev"
-        }
-        preserve_query_string = false
-      }
-    }
-    expression  = "(http.host eq \"links.hudater.dev\" and http.request.uri.path eq \"/assets/Censored_Harshit_SRE_Infrastructure_DevOps_Resume.pdf\")"
-    description = "Redirect old resume path"
-    enabled     = true
-  }
-}
